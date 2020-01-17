@@ -9,10 +9,9 @@ class CsmBoard
         $db = new SQLite3('school_board_test');
         $resource = $db->query(
         "select 
-                    student.id,
+                    student.id as student_id,
                     student.name as student_name,
-                    group_concat(grade.name) as grades_list,
-                    count(student.id) as grades_count,
+                    group_concat(grade.name) as grades_list,                    
                     avg(`value`) grades_avg,
                     avg(`value`) >= 7 as final_result
                 from student

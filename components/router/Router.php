@@ -3,6 +3,7 @@
 include_once('components\dashboard\Dashboard.php');
 include_once('components\student\Student.php');
 include_once('components\csmBoard\CsmBoard.php');
+include_once('components\csmbBoard\CsmbBoard.php');
 
 class Router
 {
@@ -52,8 +53,11 @@ class Router
                 $csmBoard = new CsmBoard();
                 $csmBoard->display();
                 return;
+            } elseif ('csmb' === $_GET['board']) {
+                $csmbBoard = new CsmbBoard();
+                $csmbBoard->display();
+                return;
             }
-
         }
 
         $dashboard = new Dashboard();
