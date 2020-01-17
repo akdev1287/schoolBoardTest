@@ -13,6 +13,15 @@ class Student
         ob_end_flush();
     }
 
+    public function displayList()
+    {
+        $student = $this;
+
+        ob_start();
+        require 'list.html';
+        ob_end_flush();
+    }
+
     public function add(string $name, string $board): bool
     {
         $success = false;
@@ -42,5 +51,17 @@ class Student
     public function getAddFormErrors(): array
     {
         return $this->addFormErrors;
+    }
+
+    public function findAll(): array
+    {
+        $students = [];
+        $db = new SQLite3('school_board_test');
+        $resource = $db->query('SELECT * FROM student');
+        while ($row = $resource->fetchArray()) {
+            $students[] = $row;
+        }
+
+        return $students;
     }
 }

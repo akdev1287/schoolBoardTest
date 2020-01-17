@@ -11,7 +11,6 @@ class Router
             $student = new Student();
 
             if ('add' === $_GET['student']) {
-
                 if (!empty($_POST)) {
                     $studentName = $_POST['name'] ?? null;
                     $studentBoard = $_POST['board'] ?? null;
@@ -25,10 +24,14 @@ class Router
                 }
 
                 $student->displayAddForm();
+                return;
+            } elseif ('list' === $_GET['student']) {
+                $student->displayList();
+                return;
             }
-        } else {
-            $dashboard = new Dashboard();
-            $dashboard->display();
         }
+
+        $dashboard = new Dashboard();
+        $dashboard->display();
     }
 }

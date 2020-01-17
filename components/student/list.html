@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SchoolBoardTest</title>
+</head>
+<body>
+    <h2>All students</h2>
+    <b>Id Name Board</b><br/>
+    <?php foreach ($student->findAll() as $studentData) { ?>
+        <?= $studentData['id'] ?> <?= $studentData['name'] ?> <?= $studentData['board'] ?><br/>
+    <?php } ?>
+</body>
+</html>
