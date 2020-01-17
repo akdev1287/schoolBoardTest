@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SchoolBoardTest</title>
+</head>
+<body>
+    <h2>Add grade for student <?= $studentId ?></h2>
+    <form method="post">
+        Name: <input type="text" name="name">
+        Value: <input type="text" name="value">
+
+        <input type="submit" value="Add grade">
+    </form>
+    <?php foreach ($student->getAddGradeFormErrors() as $error) { ?>
+        <span style="color: red"><?= $error ?></span>
+    <?php } ?>
+</body>
+</html>

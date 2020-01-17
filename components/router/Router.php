@@ -18,7 +18,6 @@ class Router
                     try{
                         $student->add($studentName, $studentBoard);
                     } catch (\TypeError $e) {
-                        print_r($e);
                         $student->addAddFormError('Can\'t add student!');
                     }
                 }
@@ -28,6 +27,24 @@ class Router
             } elseif ('list' === $_GET['student']) {
                 $student->displayList();
                 return;
+            } elseif(is_numeric($_GET['student'])) {
+                if (array_key_exists('grade', $_GET)) {
+                    if ('add' === $_GET['grade']) {
+                        if (!empty($_POST)) {
+                            $gradeName = $_POST['name'] ?? null;
+                            $gradeValue = $_POST['value'] ?? null;
+
+                            try{
+                                $student->addGrade($_GET['student'], $gradeName, $gradeValue);
+                            } catch (\TypeError $e) {
+                                $student->addAddGradeFormError('Can\'t add grade!');
+                            }
+                        }
+
+                        $student->displayAddGradeForm($_GET['student']);
+                        return;
+                    }
+                }
             }
         }
 
