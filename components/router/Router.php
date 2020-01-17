@@ -2,6 +2,7 @@
 
 include_once('components\dashboard\Dashboard.php');
 include_once('components\student\Student.php');
+include_once('components\csmBoard\CsmBoard.php');
 
 class Router
 {
@@ -46,6 +47,13 @@ class Router
                     }
                 }
             }
+        } elseif (array_key_exists('board', $_GET)) {
+            if ('csm' === $_GET['board']) {
+                $csmBoard = new CsmBoard();
+                $csmBoard->display();
+                return;
+            }
+
         }
 
         $dashboard = new Dashboard();
