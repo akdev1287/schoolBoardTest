@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SchoolBoardTest</title>
+</head>
+<body>
+    <h2>Register student</h2>
+    <?= $this->test ?>
+    <form method="post">
+        Name: <input type="text" name="name">
+        Board: <select name="board">
+            <option value="csm">CSM</option>
+            <option value="csmb">CSMB</option>
+        </select>
+        <input type="submit" value="register">
+    </form>
+    <?php foreach ($student->getAddFormErrors() as $error) { ?>
+        <span style="color: red"><?= $error ?></span>
+    <?php } ?>
+</body>
+</html>
