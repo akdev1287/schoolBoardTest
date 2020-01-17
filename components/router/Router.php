@@ -18,7 +18,10 @@ class Router
                     $studentBoard = $_POST['board'] ?? null;
 
                     try{
-                        $student->add($studentName, $studentBoard);
+                        if ($student->add($studentName, $studentBoard)) {
+                            header("Location: /?student=list");
+                            return;
+                        }
                     } catch (\TypeError $e) {
                         $student->addAddFormError('Can\'t add student!');
                     }
@@ -37,7 +40,11 @@ class Router
                             $gradeValue = $_POST['value'] ?? null;
 
                             try{
-                                $student->addGrade($_GET['student'], $gradeName, $gradeValue);
+                                if ($student->addGrade($_GET['student'], $gradeName, $gradeValue)) {
+                                    header("Location: http://schoolboard.test?student=" . $_GET['student']);
+                                    exit;
+                                }
+
                             } catch (\TypeError $e) {
                                 $student->addAddGradeFormError('Can\'t add grade!');
                             }
@@ -46,6 +53,9 @@ class Router
                         $student->displayAddGradeForm($_GET['student']);
                         return;
                     }
+                } else {
+                    $student->displayDetails($_GET['student']);
+                    return;
                 }
             }
         } elseif (array_key_exists('board', $_GET)) {

@@ -11,7 +11,7 @@ class CsmbBoard
         "select 
                     student.id as student_id,
                     student.name as student_name,
-                    group_concat(grade.name) as grades_list,                    
+                    group_concat(grade.value) as grades_list,                    
                     avg(`value`) grades_avg,
                     max(`value`) > 8 as final_result
                 from student
